@@ -6,7 +6,7 @@
 /*   By: mari-cruz <mari-cruz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 11:32:03 by mari-cruz         #+#    #+#             */
-/*   Updated: 2025/10/29 20:24:37 by mari-cruz        ###   ########.fr       */
+/*   Updated: 2025/11/05 11:04:05 by mari-cruz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 
 class Contact
 {
-	private:
+	public:
 		std::string firstName;
 		std::string lastName;
 		std::string nickname;
 		std::string phoneNumber;
 		std::string email;
-	public:
+		
 		Contact();
 		void data();
 };

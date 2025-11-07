@@ -6,7 +6,7 @@
 /*   By: mari-cruz <mari-cruz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 11:32:03 by mari-cruz         #+#    #+#             */
-/*   Updated: 2025/11/05 11:04:05 by mari-cruz        ###   ########.fr       */
+/*   Updated: 2025/11/07 11:15:09 by mari-cruz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ class Contact
 		std::string lastName;
 		std::string nickname;
 		std::string phoneNumber;
-		std::string email;
+		std::string darkestSecret;
 		
 		Contact();
 		void data();
+		void contactInfo();
 };
 
 #endif

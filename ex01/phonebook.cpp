@@ -6,31 +6,53 @@
 /*   By: mari-cruz <mari-cruz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 10:35:44 by mari-cruz         #+#    #+#             */
-/*   Updated: 2025/11/05 12:57:15 by mari-cruz        ###   ########.fr       */
+/*   Updated: 2025/11/07 12:58:54 by mari-cruz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 
+void validateIndex(int &index)
+{
+	while (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore(10000, '\n');
+		std::cout << "Invalid input. Insert contact index: ";
+		std::cin >> index;
+	}
+}
+
 std::string truncate10(std::string str)
 {
-
-	if (str.length() > 10)
+	size_t visualLen = str.length();
+	size_t i = 0;
+	
+	while (i < str.length())
 	{
-		return (str.substr(0, 9 ) + ".");
+		if ((str[i] & 0xC0) == 0x80)
+			visualLen--;
+		i++;
 	}
-	else
-		return (str);
+	if (visualLen > 10)
+    {
+        size_t bytesToCut = 9 + (str.length() - visualLen);
+        return (str.substr(0, bytesToCut) + ".");
+    }
+    else
+    {
+        std::string padding(10 - visualLen, ' ');
+        return (padding + str);
+    }
 }
 
 void addHeader()
 {
+	std::cout << std::endl;
 	std::cout << std::setw(10) << "INDEX";
 	std::cout << "|" << std::setw(10) << "NAME";
-	std::cout << "|" << std::setw(10) << "LAST";
-	std::cout << "|" << std::setw(10) << "NICK";
-	std::cout << "|" << std::setw(10) << "PHONE";
-	std::cout << "|" << std::setw(10) << "EMAIL";
+	std::cout << "|" << std::setw(10) << "LAST NAME";
+	std::cout << "|" << std::setw(10) << "NICKNAME";
 	std::cout << "|";
 	std::cout << std::endl;
 }
@@ -38,36 +60,30 @@ void addHeader()
 void PhoneBook :: searchContact()
 {
 	int i = 0;
+	int index;
 
 	std::cout << std::right;
 	addHeader();
-	std::cout << std::string(67, '-') << std::endl;
+	std::cout << std::string(50, '-') << std::endl;
 	while (i < contactCount)
 	{
 		std::cout << std::setw(10) << i;
 		std::cout << "|" << std::setw(10) << truncate10(contacts[i].firstName);
 		std::cout << "|" << std::setw(10) << truncate10(contacts[i].lastName);
 		std::cout << "|" << std::setw(10) << truncate10(contacts[i].nickname);
-		std::cout << "|" << std::setw(10) << truncate10(contacts[i].phoneNumber);
-		std::cout << "|" << std::setw(10) << truncate10(contacts[i].email);
 		std::cout << "|";
 		std::cout << std::endl;
 		i++;
 	}
-}
-
-void Contact :: data()
-{
-	std::cout << "First Name: ";
-	std::getline(std::cin, firstName);
-	std::cout << "Last Name: ";
-	std::getline(std::cin, lastName);
-	std::cout << "Nickname: ";
-	std::getline(std::cin, nickname);
-	std::cout << "Phone Number: ";
-	std::getline(std::cin, phoneNumber);
-	std::cout << "Email: ";
-	std::getline(std::cin, email);
+	std::cout << std::endl;
+	std::cout << "Insert contact index: ";
+	std::cin >> index;
+	validateIndex(index);
+	std::cin.ignore();
+	if (index >= 0 && index < contactCount)
+		contacts[index].contactInfo();
+	else
+		std::cout << "Index out of range" << std::endl;
 }
 
 void PhoneBook :: addContact()
@@ -77,9 +93,6 @@ void PhoneBook :: addContact()
 	if (contactCount < 8)
 		contactCount++;
 }
-
-Contact :: Contact() : firstName(""), lastName(""), nickname(""),
-	phoneNumber(""), email(""){}
 
 PhoneBook :: PhoneBook() : contactCount(0), lastIndex(0){}
 

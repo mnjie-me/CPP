@@ -6,7 +6,7 @@
 /*   By: mari-cruz <mari-cruz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 10:59:16 by mari-cruz         #+#    #+#             */
-/*   Updated: 2025/11/15 13:03:17 by mari-cruz        ###   ########.fr       */
+/*   Updated: 2025/11/15 13:07:54 by mari-cruz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,11 @@ bool Account::makeWithdrawal(int withdrawal)
 
 int Account::checkAmount(void)const
 {
-	//Comprueba cuanto dinero hay en la cuenta
 	return (_amount);
 }
 
 void Account::displayStatus(void)const
 {
-	//Muestra por pantalla el estado de todas la variables
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex
 	<< "amount:" << checkAmount()
@@ -101,32 +99,26 @@ void Account::displayStatus(void)const
 
 int Account::getNbAccounts(void)
 {
-	//Devuelve el numero de cuentas
 	return (_nbAccounts);
 }
 
 int Account::getTotalAmount(void)
 {
-	//Devuelve la cantida de dinero en la cuenta
 	return (_totalAmount);
 }
 
 int Account::getNbDeposits(void)
 {
-	//Devuelve la cantidad de depositos hechos
 	return (_totalNbDeposits);
 }
 
 int Account::getNbWithdrawals(void)
 {
-	//Devuelve la cantidad de retiradas hechas
 	return (_totalNbWithdrawals);
 }
 
 void Account::displayAccountsInfos(void)
 {
-	//Muestra toda la información de la cuenta
-	//Necesita tambien el timestamp
 	_displayTimestamp();
 	std::cout << "accounts:" << getNbAccounts()
 	<< ";total" << getTotalAmount()

@@ -6,7 +6,7 @@
 /*   By: mari-cruz <mari-cruz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 10:59:16 by mari-cruz         #+#    #+#             */
-/*   Updated: 2025/11/15 13:07:54 by mari-cruz        ###   ########.fr       */
+/*   Updated: 2025/11/18 12:58:45 by mari-cruz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void Account::displayAccountsInfos(void)
 {
 	_displayTimestamp();
 	std::cout << "accounts:" << getNbAccounts()
-	<< ";total" << getTotalAmount()
+	<< ";total:" << getTotalAmount()
 	<< ";deposits:" << getNbDeposits()
 	<< ";withdrawals:" << getNbWithdrawals()
 	<< std::endl;

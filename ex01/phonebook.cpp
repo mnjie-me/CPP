@@ -6,7 +6,7 @@
 /*   By: mari-cruz <mari-cruz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 10:35:44 by mari-cruz         #+#    #+#             */
-/*   Updated: 2025/11/07 12:58:54 by mari-cruz        ###   ########.fr       */
+/*   Updated: 2025/11/18 12:52:10 by mari-cruz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void validateIndex(int &index)
 	{
 		std::cin.clear();
 		std::cin.ignore(10000, '\n');
-		std::cout << "Invalid input. Insert contact index: ";
+		std::cout << "Invalid input" << std::endl
+		<< "Insert contact index: ";
 		std::cin >> index;
 	}
 }
@@ -68,27 +69,27 @@ void PhoneBook :: searchContact()
 	while (i < contactCount)
 	{
 		std::cout << std::setw(10) << i;
-		std::cout << "|" << std::setw(10) << truncate10(contacts[i].firstName);
-		std::cout << "|" << std::setw(10) << truncate10(contacts[i].lastName);
-		std::cout << "|" << std::setw(10) << truncate10(contacts[i].nickname);
+		std::cout << "|" << std::setw(10) << truncate10(contacts[i].getFirstName());
+		std::cout << "|" << std::setw(10) << truncate10(contacts[i].getLastName());
+		std::cout << "|" << std::setw(10) << truncate10(contacts[i].getNickname());
 		std::cout << "|";
 		std::cout << std::endl;
 		i++;
 	}
-	std::cout << std::endl;
+	std::cout << std::string(50, '-') << std::endl;
 	std::cout << "Insert contact index: ";
 	std::cin >> index;
 	validateIndex(index);
 	std::cin.ignore();
 	if (index >= 0 && index < contactCount)
-		contacts[index].contactInfo();
+		contacts[index].getContactInfo();
 	else
 		std::cout << "Index out of range" << std::endl;
 }
 
 void PhoneBook :: addContact()
 {
-	contacts[lastIndex].data();
+	contacts[lastIndex].getData();
 	lastIndex = (lastIndex + 1) % 8;
 	if (contactCount < 8)
 		contactCount++;
@@ -99,7 +100,6 @@ PhoneBook :: PhoneBook() : contactCount(0), lastIndex(0){}
 int	main()
 {
 	PhoneBook	phonebook;
-	Contact		contact;
 	std::string command;
 	
 	while (1)

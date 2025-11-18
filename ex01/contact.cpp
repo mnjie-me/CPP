@@ -6,11 +6,31 @@
 /*   By: mari-cruz <mari-cruz@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 10:27:50 by mari-cruz         #+#    #+#             */
-/*   Updated: 2025/11/07 12:36:52 by mari-cruz        ###   ########.fr       */
+/*   Updated: 2025/11/18 12:50:32 by mari-cruz        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
+
+std::string Contact::getFirstName()
+{
+	return (firstName);
+}
+
+std::string Contact::getLastName()
+{
+	return (lastName);
+}
+
+std::string Contact::getNickname()
+{
+	return (nickname);
+}
+
+void Contact::Contact::getContactInfo()
+{
+	contactInfo();
+}
 
 void Contact::contactInfo()
 {
@@ -35,7 +55,12 @@ std::string fillField(const std::string &prompt)
 	return (input);
 }
 
-void Contact :: data()
+void Contact::getData()
+{
+	data();
+}
+
+void Contact::data()
 {
 	firstName = fillField("First Name: ");
 	lastName = fillField("Last Name: ");
